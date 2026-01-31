@@ -1,56 +1,44 @@
-const express = require("express")
+const express = require('express')
 const router = express.Router()
+
 const productService = require('../services/productService')
 
-// GET ALL
-router.get('/', (req, res) => {
-    try {
-        const result = productService.findAll()
-        res.json(result)
-    } catch (error) {
-        res.status(error.status || 500).json({ message: error.message })
-    }
+router.get('/', async (req, res) => {
+    const result = await productService.findAll()
+    res.json(result)
 })
 
-// GET BY ID
-router.get('/:id', (req, res) => {
-    try {
-        const result = productService.searchById(req.params.id)
-        res.json(result)
-    } catch (error) {
-        res.status(error.status || 500).json({ message: error.message })
-    }
+router.get('/:id', async (req, res) => {
+    const result = await productService.findProductById(req.params.id)
+    res.json(result)
 })
 
-// CREATE
-router.post('/', (req, res) => {
-    try {
-        const newProduct = productService.create(req.body)
-        res.status(201).json(newProduct)
-    } catch (error) {
-        res.status(error.status || 500).json({ message: error.message })
-    }
-})
+router.get('/existence/:min/:max', async (req, res) => {
+    const minExistence = parseInt(req.params.min);
+    const maxExistence = parseInt(req.params.max);  
+    const products = await productService.findProductByExistence(minExistence, maxExistence);
+    res.json(products);
+    
+});
 
-// UPDATE
-router.put('/:id', (req, res) => {
-    try {
-        const updatedProduct = productService.update(req.params.id, req.body)
-        res.json(updatedProduct)
-    } catch (error) {
-        res.status(error.status || 500).json({ message: error.message })
-    }
-})
+router.post('/', async (req, res) => {
+    const newProduct = await productService.create(req.body);
+    res.status(201).json(newProduct);
+});
 
-// DELETE
-router.delete('/:id', (req, res) => {
-    try {
-        const deletedProduct = productService.delete(req.params.id)
-        res.json(deletedProduct)
-    } catch (error) {
-        res.status(error.status || 500).json({ message: error.message })
-    }
-})
 
-module.exports = router
+router.put('/:id', async (req, res) => {
+    const updatedProduct = await productService.update(req.params.id, req.body);
+    if (!updatedProduct) return res.status(404).json({ message: "Producto no encontrado para actualizar" });
+    res.json(updatedProduct);
+});
 
+
+router.delete('/:id', async (req, res) => {
+    const deletedProduct = await productService.delete(req.params.id);
+    if (!deletedProduct) return res.status(404).json({ message: "Producto no encontrado" });
+    res.json(deletedProduct);
+}); 
+
+
+module.exports = router;

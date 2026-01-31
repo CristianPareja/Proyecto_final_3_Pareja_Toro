@@ -1,140 +1,115 @@
-const productRepository = require('../repositories/productRepository')
+const productRepository = require('../repositories/productRepositorySQL');
 
-class productService {
-
-    findAll() {
-        const products = productRepository.findAll()
+class ProductService {
+    async findAll() {
+        const products = await productRepository.findAll();
         return {
             products,
             total: products.length
-        }
+        };
     }
 
-    searchById(id) {
-        const numericId = parseInt(id)
-
+    async findProductById(id) {
+        const numericId = parseInt(id);
         if (isNaN(numericId)) {
-            throw {
-                status: 400,
-                message: "ID must be a numeric value"
-            }
+            throw { status: 400, message: 'Invalid product ID' };
         }
 
-        const product = productRepository.findById(numericId)
+        const product = await productRepository.findById(numericId);
 
         if (!product) {
-            throw {
-                status: 404,
-                message: `Product with ID ${numericId} not found`
-            }
+            throw { status: 404, message: 'Product not found' };
         }
 
-        return product
+        return product;
     }
 
-    create(newProduct) {
-        const { description, price, stock, sku } = newProduct
+    async findProductByExistence(minExistence, maxExistence) {
+        const products = await productRepository.findProductByExistence(minExistence, maxExistence);
+        return {
+            products,
+            total: products.length
+        };
+    }
 
-        if (!description || !price || !stock || !sku) {
-            throw {
-                status: 400,
-                message: "Field missing"
-            }
+    async create(newProduct) {
+        const { description, price, stock, sku } = newProduct;
+
+        if (!description || price === undefined || stock === undefined || !sku) {
+            throw { status: 400, message: 'Fields missing' };
         }
 
-        if (typeof stock !== 'number' || stock < 0) {
-            throw {
-                status: 400,
-                message: "Stock must be a number greater than 0"
-            }
+        if (typeof description !== 'string' || description.length < 10) {
+            throw { status: 400, message: 'Description must be at least 10 characters' };
         }
 
-        const existingSku = productRepository.findBysku(sku)
-        if (existingSku) {
-            throw {
-                status: 400,
-                message: "SKU provided already exists"
-            }
+        const existingProduct = await productRepository.findBySku(sku.trim());
+        if (existingProduct) {
+            throw { status: 400, message: 'SKU must be unique' };
         }
 
-        const savedProduct = productRepository.create({
+        const newCreatedProduct = await productRepository.create({
             description: description.trim(),
             price,
             stock,
             sku: sku.trim()
-        })
+        });
 
-        return savedProduct
+        return newCreatedProduct;
     }
 
-    update(id, updatedData) {
-        const numericId = parseInt(id)
-
+    async update(id, updatedProduct) {
+        const numericId = parseInt(id);
         if (isNaN(numericId)) {
-            throw {
-                status: 400,
-                message: "ID must be numeric"
-            }
+            throw { status: 400, message: 'Invalid product ID' };
         }
 
-        const existingProduct = productRepository.findById(numericId)
+        const existingProduct = await productRepository.findById(numericId);
         if (!existingProduct) {
-            throw {
-                status: 404,
-                message: `Product with ID ${numericId} not found`
+            throw { status: 404, message: 'Product not found' };
+        }
+
+        if (updatedProduct.description !== undefined) {
+            if (typeof updatedProduct.description !== 'string' || updatedProduct.description.length < 10) {
+                throw { status: 400, message: 'Description must be at least 10 chars' };
             }
         }
 
-        const { description, price, stock, sku } = updatedData
-
-        if (stock !== undefined && (typeof stock !== 'number' || stock < 0)) {
-            throw {
-                status: 400,
-                message: "Stock must be a number greater than 0"
+        if (updatedProduct.sku !== undefined) {
+            const productWithSku = await productRepository.findBySku(updatedProduct.sku.trim());
+            if (productWithSku && productWithSku.id !== numericId) {
+                throw { status: 400, message: 'SKU must be unique' };
             }
         }
 
-        if (sku) {
-            const skuExists = productRepository.findBysku(sku)
-            if (skuExists && skuExists.id !== numericId) {
-                throw {
-                    status: 400,
-                    message: "SKU already exists"
-                }
-            }
-        }
+        const cleanedData = {
+            description: updatedProduct.description?.trim() || existingProduct.description,
+            sku: updatedProduct.sku?.trim() || existingProduct.sku,
+            price: updatedProduct.price !== undefined ? updatedProduct.price : existingProduct.price,
+            stock: updatedProduct.stock !== undefined ? updatedProduct.stock : existingProduct.stock
+        };
 
-        const updatedProduct = productRepository.update(numericId, {
-            description,
-            price,
-            stock,
-            sku
-        })
-
-        return updatedProduct
+        return await productRepository.update(numericId, cleanedData);
     }
 
-    delete(id) {
-        const numericId = parseInt(id)
-
+    async delete(id) {
+        const numericId = parseInt(id);
         if (isNaN(numericId)) {
-            throw {
-                status: 400,
-                message: "ID must be numeric"
-            }
+            throw { status: 400, message: 'Invalid product ID' };
         }
 
-        const deletedProduct = productRepository.delete(numericId)
-
-        if (!deletedProduct) {
-            throw {
-                status: 404,
-                message: `Product with ID ${numericId} not found`
-            }
+        const existingProduct = await productRepository.findById(numericId);
+        if (!existingProduct) {
+            throw { status: 404, message: 'Product not found' };
         }
 
-        return deletedProduct
+        const deletedProduct = await productRepository.delete(numericId);
+
+        return {
+            message: 'Product deleted successfully',
+            product: deletedProduct
+        };
     }
 }
 
-module.exports = new productService()
+module.exports = new ProductService();
