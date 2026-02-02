@@ -1,115 +1,124 @@
-const productRepository = require('../repositories/productRepositorySQL');
+// services/productService.js
+const productRepository = require("../repositories/productRepositoryORM");
 
 class ProductService {
-    async findAll() {
-        const products = await productRepository.findAll();
-        return {
-            products,
-            total: products.length
-        };
+  async findAll() {
+    const products = await productRepository.findAll();
+    return { products, total: products.length };
+  }
+
+  async findProductById(id) {
+    const numericId = parseInt(id);
+    if (isNaN(numericId)) throw { status: 400, message: "Invalid product ID" };
+
+    const product = await productRepository.findById(numericId);
+    if (!product) throw { status: 404, message: "Product not found" };
+
+    return product;
+  }
+
+  async findProductByQuantity(min, max) {
+    const minQ = parseInt(min);
+    const maxQ = parseInt(max);
+    if (isNaN(minQ) || isNaN(maxQ)) throw { status: 400, message: "Invalid quantity range" };
+
+    const products = await productRepository.findByQuantityRange(minQ, maxQ);
+    return { products, total: products.length };
+  }
+
+  async create(newProduct, sellerId) {
+  if (!newProduct) throw { status: 400, message: "Body vacío" };
+
+  const { name, description, quantity, price } = newProduct;
+
+  // ✅ ya no pedimos seller_id en el body
+  if (!name || !description || quantity === undefined || price === undefined) {
+    throw { status: 400, message: "Fields missing (name, description, quantity, price)" };
+  }
+
+  if (typeof name !== "string" || name.trim().length < 3) {
+    throw { status: 400, message: "Name must be at least 3 characters" };
+  }
+
+  if (typeof description !== "string" || description.trim().length < 10) {
+    throw { status: 400, message: "Description must be at least 10 characters" };
+  }
+
+  const qty = parseInt(quantity);
+  if (isNaN(qty) || qty < 0) {
+    throw { status: 400, message: "Quantity must be a number >= 0" };
+  }
+
+  const pr = Number(price);
+  if (isNaN(pr) || pr <= 0) {
+    throw { status: 400, message: "Price must be a number > 0" };
+  }
+
+  // ✅ sellerId viene del token (middleware auth)
+  const numericSellerId = parseInt(sellerId);
+  if (isNaN(numericSellerId) || numericSellerId <= 0) {
+    throw { status: 401, message: "Invalid seller (token)" };
+  }
+
+  return await productRepository.create({
+    name: name.trim(),
+    description: description.trim(),
+    quantity: qty,
+    price: pr,
+    seller_id: numericSellerId
+  });
+}
+
+
+  async update(id, updatedProduct) {
+    const numericId = parseInt(id);
+    if (isNaN(numericId)) throw { status: 400, message: "Invalid product ID" };
+
+    const existing = await productRepository.findById(numericId);
+    if (!existing) throw { status: 404, message: "Product not found" };
+
+    const cleaned = {};
+
+    if (updatedProduct.name !== undefined) {
+      if (typeof updatedProduct.name !== "string" || updatedProduct.name.trim().length < 3) {
+        throw { status: 400, message: "Name must be at least 3 characters" };
+      }
+      cleaned.name = updatedProduct.name.trim();
     }
 
-    async findProductById(id) {
-        const numericId = parseInt(id);
-        if (isNaN(numericId)) {
-            throw { status: 400, message: 'Invalid product ID' };
-        }
-
-        const product = await productRepository.findById(numericId);
-
-        if (!product) {
-            throw { status: 404, message: 'Product not found' };
-        }
-
-        return product;
+    if (updatedProduct.description !== undefined) {
+      if (typeof updatedProduct.description !== "string" || updatedProduct.description.trim().length < 10) {
+        throw { status: 400, message: "Description must be at least 10 characters" };
+      }
+      cleaned.description = updatedProduct.description.trim();
     }
 
-    async findProductByExistence(minExistence, maxExistence) {
-        const products = await productRepository.findProductByExistence(minExistence, maxExistence);
-        return {
-            products,
-            total: products.length
-        };
+    if (updatedProduct.quantity !== undefined) {
+      const qty = parseInt(updatedProduct.quantity);
+      if (isNaN(qty) || qty < 0) throw { status: 400, message: "Quantity must be a number >= 0" };
+      cleaned.quantity = qty;
     }
 
-    async create(newProduct) {
-        const { description, price, stock, sku } = newProduct;
-
-        if (!description || price === undefined || stock === undefined || !sku) {
-            throw { status: 400, message: 'Fields missing' };
-        }
-
-        if (typeof description !== 'string' || description.length < 10) {
-            throw { status: 400, message: 'Description must be at least 10 characters' };
-        }
-
-        const existingProduct = await productRepository.findBySku(sku.trim());
-        if (existingProduct) {
-            throw { status: 400, message: 'SKU must be unique' };
-        }
-
-        const newCreatedProduct = await productRepository.create({
-            description: description.trim(),
-            price,
-            stock,
-            sku: sku.trim()
-        });
-
-        return newCreatedProduct;
+    if (updatedProduct.price !== undefined) {
+      const pr = Number(updatedProduct.price);
+      if (isNaN(pr) || pr <= 0) throw { status: 400, message: "Price must be a number > 0" };
+      cleaned.price = pr;
     }
 
-    async update(id, updatedProduct) {
-        const numericId = parseInt(id);
-        if (isNaN(numericId)) {
-            throw { status: 400, message: 'Invalid product ID' };
-        }
+    // seller_id no lo dejo editable por defecto para evitar lío de dueño.
+    return await productRepository.update(numericId, cleaned);
+  }
 
-        const existingProduct = await productRepository.findById(numericId);
-        if (!existingProduct) {
-            throw { status: 404, message: 'Product not found' };
-        }
+  async delete(id) {
+    const numericId = parseInt(id);
+    if (isNaN(numericId)) throw { status: 400, message: "Invalid product ID" };
 
-        if (updatedProduct.description !== undefined) {
-            if (typeof updatedProduct.description !== 'string' || updatedProduct.description.length < 10) {
-                throw { status: 400, message: 'Description must be at least 10 chars' };
-            }
-        }
+    const existing = await productRepository.findById(numericId);
+    if (!existing) throw { status: 404, message: "Product not found" };
 
-        if (updatedProduct.sku !== undefined) {
-            const productWithSku = await productRepository.findBySku(updatedProduct.sku.trim());
-            if (productWithSku && productWithSku.id !== numericId) {
-                throw { status: 400, message: 'SKU must be unique' };
-            }
-        }
-
-        const cleanedData = {
-            description: updatedProduct.description?.trim() || existingProduct.description,
-            sku: updatedProduct.sku?.trim() || existingProduct.sku,
-            price: updatedProduct.price !== undefined ? updatedProduct.price : existingProduct.price,
-            stock: updatedProduct.stock !== undefined ? updatedProduct.stock : existingProduct.stock
-        };
-
-        return await productRepository.update(numericId, cleanedData);
-    }
-
-    async delete(id) {
-        const numericId = parseInt(id);
-        if (isNaN(numericId)) {
-            throw { status: 400, message: 'Invalid product ID' };
-        }
-
-        const existingProduct = await productRepository.findById(numericId);
-        if (!existingProduct) {
-            throw { status: 404, message: 'Product not found' };
-        }
-
-        const deletedProduct = await productRepository.delete(numericId);
-
-        return {
-            message: 'Product deleted successfully',
-            product: deletedProduct
-        };
-    }
+    const deleted = await productRepository.delete(numericId);
+    return { message: "Product deleted successfully", product: deleted };
+  }
 }
 
 module.exports = new ProductService();

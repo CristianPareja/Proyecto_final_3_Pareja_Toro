@@ -1,17 +1,53 @@
-const express = require("express")
-const app = express()
-const PORT = 4000
-const productRoutes = require('./routes/productRoutes')
+// server.js
+require("dotenv").config();
 
-app.use(express.json())
+const express = require("express");
+const app = express();
+const PORT = 4000;
 
+// 👉 conexión Sequelize
+const sequelize = require("./database");
 
-app.get('/', (req, res) => {
-    res.send("test")
-})
+// 👉 cargar modelos y asociaciones
+require("./models");
 
-app.use("/api/products",productRoutes)
+// 👉 rutas
+const productRoutes = require("./routes/productRoutes");
+const authRoutes = require("./routes/authRoutes");
 
-app.listen(PORT, () => {
-    console.log(`Started server in port: ${PORT}`)
-})
+// middleware
+app.use(express.json());
+
+// rutas
+app.get("/", (req, res) => {
+  res.send("EcoCanje API funcionando 🚀");
+});
+
+app.use("/api/auth", authRoutes);
+app.use("/api/products", productRoutes);
+
+// ✅ middleware de errores (SIEMPRE al final, después de las rutas)
+app.use((err, req, res, next) => {
+  const status = err.status || 500;
+  res.status(status).json({
+    message: err.message || "Internal server error",
+    status,
+  });
+});
+
+// ✅ sincronizar BD y levantar servidor
+(async () => {
+  try {
+    await sequelize.authenticate();
+    console.log("✅ Conexión a la base de datos exitosa");
+
+    await sequelize.sync({ alter: true });
+    console.log("✅ Tablas creadas / sincronizadas correctamente");
+
+    app.listen(PORT, () => {
+      console.log(`🚀 Servidor levantado en http://localhost:${PORT}`);
+    });
+  } catch (error) {
+    console.error("❌ Error al iniciar el servidor:", error);
+  }
+})();
