@@ -2,6 +2,7 @@
 require("dotenv").config();
 
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const PORT = 4000;
 
@@ -15,18 +16,38 @@ require("./models");
 const productRoutes = require("./routes/productRoutes");
 const authRoutes = require("./routes/authRoutes");
 
-// middlewares
+// =====================
+// MIDDLEWARES
+// =====================
+
+// 🔓 CORS (permite conexión desde el frontend)
+app.use(
+  cors({
+    origin: "http://localhost:5173", // Vite
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+
+// 📦 JSON body
 app.use(express.json());
 
-// rutas
+// =====================
+// RUTAS
+// =====================
+
+// ruta base de prueba
 app.get("/", (req, res) => {
   res.send("EcoCanje API funcionando 🚀");
 });
 
+// auth & productos
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
 
-// ✅ middleware de errores (SIEMPRE al final, después de las rutas)
+// =====================
+// MANEJO DE ERRORES (SIEMPRE AL FINAL)
+// =====================
 app.use((err, req, res, next) => {
   const status = err.status || 500;
   res.status(status).json({
@@ -35,14 +56,16 @@ app.use((err, req, res, next) => {
   });
 });
 
-// ✅ sincronizar BD y levantar servidor
+// =====================
+// INICIAR SERVIDOR + DB
+// =====================
 (async () => {
   try {
     await sequelize.authenticate();
     console.log("✅ Conexión a la base de datos exitosa");
 
     await sequelize.sync({ alter: true });
-    console.log("✅ Tablas creadas / sincronizadas correctamente");
+    console.log("✅ Tablas sincronizadas");
 
     app.listen(PORT, () => {
       console.log(`🚀 Servidor levantado en http://localhost:${PORT}`);
