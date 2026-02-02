@@ -1,9 +1,12 @@
+// routes/productRoutes.js
 const express = require("express");
 const router = express.Router();
+
 const auth = require("../middlewares/auth");
 const productService = require("../services/productService");
+const orderService = require("../services/orderService");
 
-// GET por rango de cantidad (debe ir antes de "/:id")
+// ✅ GET por rango de cantidad (DEBE ir antes de "/:id")
 router.get("/quantity/:min/:max", async (req, res, next) => {
   try {
     const result = await productService.findProductByQuantity(req.params.min, req.params.max);
@@ -13,7 +16,7 @@ router.get("/quantity/:min/:max", async (req, res, next) => {
   }
 });
 
-// GET all
+// ✅ GET all
 router.get("/", async (req, res, next) => {
   try {
     const result = await productService.findAll();
@@ -23,7 +26,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-// GET by id
+// ✅ GET by id
 router.get("/:id", async (req, res, next) => {
   try {
     const result = await productService.findProductById(req.params.id);
@@ -33,7 +36,7 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
-// POST create (protegido)
+// ✅ POST create (protegido)
 router.post("/", auth, async (req, res, next) => {
   try {
     const newProduct = await productService.create(req.body, req.user.id);
@@ -43,7 +46,19 @@ router.post("/", auth, async (req, res, next) => {
   }
 });
 
-// PUT update (protegido + dueño)
+// ✅ BUY product (protegido)
+// POST /api/products/:id/buy
+// Body: { "quantity": 2 }
+router.post("/:id/buy", auth, async (req, res, next) => {
+  try {
+    const result = await orderService.buyProduct(req.params.id, req.user.id, req.body?.quantity);
+    res.status(201).json(result);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// ✅ PUT update (protegido + dueño)
 router.put("/:id", auth, async (req, res, next) => {
   try {
     const updatedProduct = await productService.update(req.params.id, req.body, req.user.id);
@@ -53,7 +68,7 @@ router.put("/:id", auth, async (req, res, next) => {
   }
 });
 
-// DELETE (protegido + dueño)
+// ✅ DELETE (protegido + dueño)
 router.delete("/:id", auth, async (req, res, next) => {
   try {
     const result = await productService.delete(req.params.id, req.user.id);
