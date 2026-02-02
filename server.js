@@ -15,7 +15,7 @@ require("./models");
 const productRoutes = require("./routes/productRoutes");
 const authRoutes = require("./routes/authRoutes");
 
-// middleware
+// middlewares
 app.use(express.json());
 
 // rutas
