@@ -1,76 +1,42 @@
 // server.js
 require("dotenv").config();
-
 const express = require("express");
 const cors = require("cors");
-const app = express();
-const PORT = 4000;
 
-// 👉 conexión Sequelize
-const sequelize = require("./database");
+const { sequelize } = require("./models");
 
-// 👉 cargar modelos y asociaciones
-require("./models");
-
-// 👉 rutas
 const productRoutes = require("./routes/productRoutes");
-const authRoutes = require("./routes/authRoutes");
+const purchaseRequestRoutes = require("./routes/purchaseRequestRoutes");
 
-// =====================
-// MIDDLEWARES
-// =====================
+const app = express();
 
-// 🔓 CORS (permite conexión desde el frontend)
-app.use(
-  cors({
-    origin: "http://localhost:5173", // Vite
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
-
-// 📦 JSON body
+app.use(cors());
 app.use(express.json());
 
-// =====================
-// RUTAS
-// =====================
-
-// ruta base de prueba
 app.get("/", (req, res) => {
-  res.send("EcoCanje API funcionando 🚀");
+  res.json({ ok: true, message: "EcoCanje API running" });
 });
 
-// auth & productos
-app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
+app.use("/api/purchase-requests", purchaseRequestRoutes);
 
-// =====================
-// MANEJO DE ERRORES (SIEMPRE AL FINAL)
-// =====================
 app.use((err, req, res, next) => {
-  const status = err.status || 500;
-  res.status(status).json({
-    message: err.message || "Internal server error",
-    status,
-  });
+  console.error("❌ ERROR:", err);
+  res.status(err?.status || 500).json({ message: err?.message || "Internal server error" });
 });
 
-// =====================
-// INICIAR SERVIDOR + DB
-// =====================
+const PORT = process.env.PORT || 4000;
+
 (async () => {
   try {
     await sequelize.authenticate();
-    console.log("✅ Conexión a la base de datos exitosa");
-
-    await sequelize.sync({ alter: true });
-    console.log("✅ Tablas sincronizadas");
+    console.log("✅ Conexión a PostgreSQL OK");
 
     app.listen(PORT, () => {
-      console.log(`🚀 Servidor levantado en http://localhost:${PORT}`);
+      console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
     });
   } catch (error) {
     console.error("❌ Error al iniciar el servidor:", error);
+    process.exit(1);
   }
 })();

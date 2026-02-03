@@ -1,14 +1,24 @@
-const { Sequelize } = require("sequelize")
+// database.js
+require("dotenv").config();
+const { Sequelize } = require("sequelize");
 
-const sequelize= new Sequelize('ecocanje_db', 'postgres', 'postgres',{
-    host: 'localhost',
-    dialect: 'postgres',
-    port: 5435,
-    logging: true
-})
+const DB_NAME = process.env.DB_NAME;
+const DB_USER = process.env.DB_USER;
+const DB_PASSWORD = process.env.DB_PASSWORD; // <- debe ser string
+const DB_HOST = process.env.DB_HOST || "localhost";
+const DB_PORT = parseInt(process.env.DB_PORT || "5432", 10);
 
-sequelize.authenticate()
-    .then(()=>console.log('coneccion exitosa'))
-    .catch(err => console.log(`error de coneccion: ${err}`))
+if (!DB_PASSWORD || typeof DB_PASSWORD !== "string") {
+  console.error("❌ DB_PASSWORD no está definida o no es string. Revisa tu .env");
+  console.error("DB_PASSWORD =", DB_PASSWORD);
+  process.exit(1);
+}
 
-module.exports= sequelize
+const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
+  host: DB_HOST,
+  port: DB_PORT,
+  dialect: "postgres",
+  logging: false,
+});
+
+module.exports = sequelize;

@@ -1,47 +1,52 @@
 // repositories/productRepositoryORM.js
+const { Product, User } = require("../models");
 const { Op } = require("sequelize");
-const Product = require("../models/Product");
 
 class ProductRepositoryORM {
-  async findAll() {
-    return await Product.findAll({ order: [["id", "ASC"]] });
-  }
-
-  async findById(id) {
-    return await Product.findByPk(id);
-  }
-
-  async findByQuantityRange(min, max) {
+  async findAllInStock() {
     return await Product.findAll({
-      where: {
-        quantity: { [Op.between]: [min, max] },
-      },
-      order: [["id", "ASC"]],
+      where: { quantity: { [Op.gt]: 0 } },
+      order: [["id", "DESC"]],
+      include: [
+        {
+          model: User,
+          as: "seller",
+          attributes: ["id", "username", "phone"],
+        },
+      ],
     });
   }
 
-  async create(productData) {
-    return await Product.create(productData);
+  async findById(id) {
+    return await Product.findByPk(id, {
+      include: [
+        {
+          model: User,
+          as: "seller",
+          attributes: ["id", "username", "phone"],
+        },
+      ],
+    });
   }
 
-  async update(id, updatedProduct) {
+  async create(data) {
+    return await Product.create(data);
+  }
+
+  async update(id, data) {
     const product = await Product.findByPk(id);
     if (!product) return null;
-
-    await product.update(updatedProduct);
+    await product.update(data);
     return product;
   }
 
   async delete(id) {
     const product = await Product.findByPk(id);
     if (!product) return null;
-
-    const deleted = product.toJSON();
     await product.destroy();
-    return deleted;
+    return product;
   }
 }
-
 
 module.exports = new ProductRepositoryORM();
 

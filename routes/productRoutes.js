@@ -1,22 +1,10 @@
 // routes/productRoutes.js
 const express = require("express");
 const router = express.Router();
-
 const auth = require("../middlewares/auth");
 const productService = require("../services/productService");
-const orderService = require("../services/orderService");
 
-// ✅ GET por rango de cantidad (DEBE ir antes de "/:id")
-router.get("/quantity/:min/:max", async (req, res, next) => {
-  try {
-    const result = await productService.findProductByQuantity(req.params.min, req.params.max);
-    res.json(result);
-  } catch (err) {
-    next(err);
-  }
-});
-
-// ✅ GET all
+// GET all (solo con stock)
 router.get("/", async (req, res, next) => {
   try {
     const result = await productService.findAll();
@@ -26,7 +14,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-// ✅ GET by id
+// GET by id
 router.get("/:id", async (req, res, next) => {
   try {
     const result = await productService.findProductById(req.params.id);
@@ -36,7 +24,7 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
-// ✅ POST create (protegido)
+// POST create (vendedor)
 router.post("/", auth, async (req, res, next) => {
   try {
     const newProduct = await productService.create(req.body, req.user.id);
@@ -46,33 +34,32 @@ router.post("/", auth, async (req, res, next) => {
   }
 });
 
-// ✅ BUY product (protegido)
-// POST /api/products/:id/buy
-// Body: { "quantity": 2 }
-router.post("/:id/buy", auth, async (req, res, next) => {
+// ✅ POST request purchase (comprador compra 1 producto)
+router.post("/:id/request-purchase", auth, async (req, res, next) => {
   try {
-    const result = await orderService.buyProduct(req.params.id, req.user.id, req.body?.quantity);
-    res.status(201).json(result);
+    const { quantity } = req.body;
+    const result = await productService.requestPurchase(req.params.id, req.user.id, quantity);
+    res.status(200).json(result);
   } catch (err) {
     next(err);
   }
 });
 
-// ✅ PUT update (protegido + dueño)
+// PUT update
 router.put("/:id", auth, async (req, res, next) => {
   try {
-    const updatedProduct = await productService.update(req.params.id, req.body, req.user.id);
-    res.json(updatedProduct);
+    const updated = await productService.update(req.params.id, req.body);
+    res.json(updated);
   } catch (err) {
     next(err);
   }
 });
 
-// ✅ DELETE (protegido + dueño)
+// DELETE
 router.delete("/:id", auth, async (req, res, next) => {
   try {
-    const result = await productService.delete(req.params.id, req.user.id);
-    res.json(result);
+    const deleted = await productService.delete(req.params.id);
+    res.json(deleted);
   } catch (err) {
     next(err);
   }
