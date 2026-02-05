@@ -1,3 +1,5 @@
+version: "3.9"
+
 services:
   postgres:
     image: postgres:15
@@ -7,9 +9,31 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: products_db
+      POSTGRES_DB: ecocanje_db
     volumes:
-      - postgres_data:/var/lib/postgresql/data
-      - ./initdb:/docker-entrypoint-initdb.d
-volumes:
-  postgres_data:
+      - ./backups:/backups
+    command: >
+      postgres
+      -c log_destination=stderr
+      -c logging_collector=off
+      -c log_connections=on
+      -c log_disconnections=on
+      -c log_duration=on
+      -c log_min_duration_statement=0
+      -c log_line_prefix='%m [%p] user=%u db=%d app=%a client=%h '
+
+  backup-cron:
+    build:
+      context: .
+      dockerfile: Dockerfile.cron
+    container_name: ecocanje_backup_cron
+    depends_on:
+      - postgres
+    environment:
+      PGHOST: postgres
+      PGPORT: "5432"
+      PGDATABASE: ecocanje_db
+      PGUSER: ecocanje_api_user
+      PGPASSWORD: "123456"
+    volumes:
+      - ./backups:/backups

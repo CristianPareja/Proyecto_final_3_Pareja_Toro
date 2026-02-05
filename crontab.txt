@@ -1,0 +1,4 @@
+* * * * * /bin/bash /backup.sh >> /backups/cron.log 2>&1
+
+
+

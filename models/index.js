@@ -1,27 +1,23 @@
 // models/index.js
-const sequelize = require("../database");
-
-// ⚠️ Ajusta nombres si tus archivos se llaman diferente
 const User = require("./User");
-const Product = require("./Product"); // si en tu proyecto es "./Products", cambia aquí
-const PurchaseRequest = require("./PurchaseRequest");
+const Product = require("./Product");
+const Order = require("./Order");
+const OrderItem = require("./OrderItem");
 
-// ============================
-// Asociaciones
-// ============================
-
-// Producto -> vendedor
+// Seller (User) -> Products
+User.hasMany(Product, { foreignKey: "seller_id" });
 Product.belongsTo(User, { foreignKey: "seller_id", as: "seller" });
-User.hasMany(Product, { foreignKey: "seller_id", as: "products" });
 
-// Solicitudes de compra
-PurchaseRequest.belongsTo(Product, { foreignKey: "product_id", as: "product" });
-PurchaseRequest.belongsTo(User, { foreignKey: "buyer_id", as: "buyer" });
-PurchaseRequest.belongsTo(User, { foreignKey: "seller_id", as: "seller" });
+// Buyer (User) -> Orders
+User.hasMany(Order, { foreignKey: "buyer_id" });
+Order.belongsTo(User, { foreignKey: "buyer_id", as: "buyer" });
 
-module.exports = {
-  sequelize,
-  User,
-  Product,
-  PurchaseRequest,
-};
+// Order -> Items
+Order.hasMany(OrderItem, { foreignKey: "order_id" });
+OrderItem.belongsTo(Order, { foreignKey: "order_id" });
+
+// Product -> Items
+Product.hasMany(OrderItem, { foreignKey: "product_id" });
+OrderItem.belongsTo(Product, { foreignKey: "product_id" });
+
+module.exports = { User, Product, Order, OrderItem };

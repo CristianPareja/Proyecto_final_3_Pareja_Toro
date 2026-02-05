@@ -9,7 +9,7 @@ const DB_HOST = process.env.DB_HOST || "localhost";
 const DB_PORT = parseInt(process.env.DB_PORT || "5432", 10);
 
 if (!DB_PASSWORD || typeof DB_PASSWORD !== "string") {
-  console.error("❌ DB_PASSWORD no está definida o no es string. Revisa tu .env");
+  console.error("DB_PASSWORD no está definida o no es string. Revisa tu .env");
   console.error("DB_PASSWORD =", DB_PASSWORD);
   process.exit(1);
 }
