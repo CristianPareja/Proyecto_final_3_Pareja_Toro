@@ -77,7 +77,7 @@ class ProductService {
     return { message: "Product deleted successfully", product: deleted };
   }
 
-  // ✅ compra simple: descuenta stock (1 producto a la vez)
+  // compra simple: descuenta stock (1 producto a la vez)
   async requestPurchase(productId, buyerId, quantity) {
     const pid = parseInt(productId);
     const bid = parseInt(buyerId);

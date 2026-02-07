@@ -25,7 +25,7 @@ export default function ProductsPage({ onLogout }) {
   const token = localStorage.getItem("token") || "";
   const usernameLS = localStorage.getItem("username") || "Usuario";
 
-  // ✅ Mejor: traer el usuario real del backend
+  // trae el usuario real del backend
   const [me, setMe] = useState({
     id: getUserIdFromToken(token),
     username: usernameLS,
@@ -59,9 +59,9 @@ export default function ProductsPage({ onLogout }) {
   // mini toast para buyer al cambiar estado
   const [buyerNotice, setBuyerNotice] = useState("");
 
-  // -------------------------
-  // Cargar usuario real (si existe /api/auth/me)
-  // -------------------------
+  
+  // Cargar usuario real 
+  
   useEffect(() => {
     const loadMe = async () => {
       try {
@@ -71,11 +71,11 @@ export default function ProductsPage({ onLogout }) {
           setMe({ id: res.data.id, username: res.data.username || usernameLS });
         }
       } catch {
-        // si no existe endpoint, no pasa nada (quedamos con JWT/localStorage)
+        // si no existe endpoint, quedamos con JWT/localStorage
       }
     };
     if (token) loadMe();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    
   }, []);
 
   const loadProducts = async () => {
@@ -95,9 +95,9 @@ export default function ProductsPage({ onLogout }) {
     loadProducts();
   }, []);
 
-  // -------------------------
-  // ✅ Polling: solicitudes pendientes del vendedor (cada 5s)
-  // -------------------------
+
+  // Polling: solicitudes pendientes del vendedor (cada 5s)
+
   useEffect(() => {
   let timer = null;
 
@@ -119,9 +119,9 @@ export default function ProductsPage({ onLogout }) {
 }, []);
 
 
-  // -------------------------
-  // ✅ Polling: estado de la solicitud creada por Buyer (cada 3s)
-  // -------------------------
+
+  // Polling: estado de la solicitud creada por Buyer (cada 3s)
+  
   useEffect(() => {
     if (!createdRequestId || !currentUserId) return;
 
@@ -146,7 +146,7 @@ export default function ProductsPage({ onLogout }) {
           clearInterval(timer);
         }
       } catch {
-        // ignora
+
       }
     };
 
@@ -171,9 +171,9 @@ export default function ProductsPage({ onLogout }) {
 
   const clearSelection = () => setSelected(null);
 
-  // -------------------------
-  // ✅ Buyer: crear solicitud PENDING (NO baja stock)
-  // -------------------------
+
+  //Buyer: crear solicitud PENDING (NO baja stock)
+  
   const solicitarCompra = async () => {
     if (!selected) return alert("Primero añade un producto al detalle.");
     if (!currentUserId) return alert("No se pudo identificar al usuario (ID).");
@@ -205,9 +205,9 @@ export default function ProductsPage({ onLogout }) {
     }
   };
 
-  // -------------------------
-  // ✅ Vendedor: aceptar/rechazar solicitud (stock baja SOLO si acepta)
-  // -------------------------
+  
+  //Vendedor: aceptar/rechazar solicitud (stock baja SOLO si acepta)
+  
   const acceptRequest = async (req) => {
     if (!currentUserId) return alert("No se pudo identificar al vendedor (ID).");
 
@@ -255,9 +255,9 @@ export default function ProductsPage({ onLogout }) {
     }
   };
 
-  // -------------------------
-  // ✅ Update/Delete producto (solo dueño)
-  // -------------------------
+  
+  // Update/Delete producto (solo dueño)
+ 
   const isOwner = (p) => {
     const sellerId = p.seller_id || p.seller?.id || p.seller?.user_id;
     return sellerId && currentUserId && Number(sellerId) === Number(currentUserId);
@@ -453,7 +453,7 @@ export default function ProductsPage({ onLogout }) {
                       Añadir
                     </button>
 
-                    {/* ✅ SOLO DUEÑO: Update/Delete */}
+                    {/*SOLO DUEÑO: Update/Delete */}
                     {isOwner(p) && (
                       <div className="ml-auto flex gap-2">
                         <button
@@ -537,7 +537,7 @@ export default function ProductsPage({ onLogout }) {
         </div>
       </div>
 
-      {/* ✅ Modal info vendedor + estado */}
+      {/* Modal info vendedor + estado */}
       <SellerInfoModal
         open={openSeller}
         onClose={() => setOpenSeller(false)}
@@ -545,7 +545,7 @@ export default function ProductsPage({ onLogout }) {
         requestStatus={requestStatus}
       />
 
-      {/* ✅ Modal solicitudes vendedor */}
+      {/* Modal solicitudes vendedor */}
       <PurchaseRequestsModal
         open={openRequests}
         onClose={() => setOpenRequests(false)}

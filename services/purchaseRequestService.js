@@ -34,7 +34,7 @@ class PurchaseRequestService {
     return await purchaseRepo.findBuyerAll(buyerId);
   }
 
-  // Seller acepta: baja stock + marca accepted (todo en transacción)
+  // Seller acepta: baja stock + marca accepted 
   async acceptRequest({ requestId, sellerId }) {
     return await sequelize.transaction(async (t) => {
       const req = await PurchaseRequest.findByPk(requestId, { transaction: t, lock: true });
@@ -75,9 +75,7 @@ class PurchaseRequestService {
     return req;
   }
 
-  // Buyer ve info bancaria SOLO si está ACCEPTED
-  // (Aquí asumo que luego vas a manejar banca en otra tabla o de otra forma.
-  // Por ahora solo devolvemos "allowed: true" como bandera)
+  
   async buyerCanSeeBankInfo({ requestId, buyerId }) {
     const req = await PurchaseRequest.findByPk(requestId);
     if (!req) throw { status: 404, message: "Solicitud no encontrada" };

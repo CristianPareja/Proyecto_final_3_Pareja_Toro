@@ -27,7 +27,7 @@ export default function EditProductModal({ open, onClose, product, onSave, loadi
   const submit = async (e) => {
     e.preventDefault();
 
-    // validaciones simples
+    // validaciones
     if (!String(form.name).trim()) return alert("Nombre obligatorio");
     if (!String(form.description).trim()) return alert("Descripción obligatoria");
     const q = Number(form.quantity);

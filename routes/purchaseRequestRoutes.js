@@ -5,10 +5,10 @@ const sequelize = require("../database");
 const { User, Product, Order, OrderItem, PurchaseRequest } = require("../models");
 const auth = require("../middlewares/auth");
 
-/* =====================================================
-   BUYER: crear solicitud de compra (PENDING)
-   NO baja stock
-===================================================== */
+
+   //BUYER: crear solicitud de compra (PENDING)
+  //NO baja stock
+
 router.post("/", auth, async (req, res, next) => {
   try {
     const buyerId = req.user.id;
@@ -47,10 +47,10 @@ router.post("/", auth, async (req, res, next) => {
   }
 });
 
-/* =====================================================
-   SELLER: ver solicitudes pendientes (NOTIFICACIONES)
-   🔔 ESTA ES LA CLAVE
-===================================================== */
+
+   //SELLER: ver solicitudes pendientes (NOTIFICACIONES)
+   
+
 router.get("/seller/pending", auth, async (req, res, next) => {
   try {
     const sellerId = req.user.id;
@@ -81,9 +81,7 @@ router.get("/seller/pending", auth, async (req, res, next) => {
   }
 });
 
-/* =====================================================
-   BUYER: ver estado + datos bancarios si ACCEPTED
-===================================================== */
+
 router.get("/:id/can-see-bank", auth, async (req, res, next) => {
   try {
     const buyerId = req.user.id;
@@ -127,11 +125,10 @@ router.get("/:id/can-see-bank", auth, async (req, res, next) => {
   }
 });
 
-/* =====================================================
-   SELLER: aceptar solicitud
-   ✔ baja stock
-   ✔ crea orden
-===================================================== */
+
+   //SELLER: aceptar solicitud
+   // baja stock
+
 router.post("/:id/accept", auth, async (req, res, next) => {
   const t = await sequelize.transaction();
   try {
@@ -202,9 +199,9 @@ router.post("/:id/accept", auth, async (req, res, next) => {
   }
 });
 
-/* =====================================================
-   SELLER: rechazar solicitud
-===================================================== */
+
+   //SELLER: rechazar solicitud
+
 router.post("/:id/reject", auth, async (req, res, next) => {
   try {
     const sellerId = req.user.id;

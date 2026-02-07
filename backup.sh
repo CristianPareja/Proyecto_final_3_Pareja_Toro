@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# ============================
 # Backup automático EcoCanje
-# ============================
 
-# ✅ Defaults
+# Defaults
 PGHOST="${PGHOST:-postgres}"
 PGPORT="${PGPORT:-5432}"
 PGDATABASE="${PGDATABASE:-ecocanje_db}"
@@ -29,5 +27,5 @@ pg_dump \
 
 echo "[$(date)] Backup exitoso: ${PGDATABASE}_${DATE}.sql"
 
-# Retención: borrar .sql mayores a 7 días
+# borrar .sql mayores a 7 días
 find "${BACKUP_DIR}" -type f -name "*.sql" -mtime +7 -delete || true

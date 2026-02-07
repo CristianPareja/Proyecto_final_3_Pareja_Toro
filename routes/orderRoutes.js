@@ -8,9 +8,7 @@ const orderService = require("../services/orderService");
 // POST /api/orders  -> crea compra (baja stock)
 router.post("/", auth, async (req, res, next) => {
   try {
-    // body esperado por tu frontend:
-    // { productId, quantity }
-    // (opcional) payment_method, contact_phone, contact_email
+
     const buyerId = req.user?.id || req.user?.userId || req.user?.sub;
     if (!buyerId) return res.status(401).json({ message: "No user id in token", status: 401 });
 

@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 4000;
 // Sequelize
 const sequelize = require("./database");
 
-// ✅ IMPORTANTE: cargar modelos y asociaciones
+// cargar modelos y asociaciones
 require("./models");
 
 // Rutas
@@ -36,7 +36,7 @@ app.use((err, req, res, next) => {
   res.status(status).json({ message: err.message || "Internal server error", status });
 });
 
-// ✅ Arranque + Sync
+// Arranque + Sync
 (async () => {
   try {
     await sequelize.authenticate();

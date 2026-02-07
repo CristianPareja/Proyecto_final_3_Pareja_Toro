@@ -40,7 +40,7 @@ class OrderService {
     const unitPrice = Number(product.price);
     const total = unitPrice * qty;
 
-    // Transacción (muy importante para consistencia)
+    // Transacción 
     const sequelize = Product.sequelize;
 
     return await sequelize.transaction(async (t) => {

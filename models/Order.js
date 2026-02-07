@@ -11,21 +11,21 @@ const Order = sequelize.define(
 
     total: { type: DataTypes.DECIMAL(10, 2), allowNull: false, defaultValue: 0 },
 
-    // ✅ NUEVO: contraentrega didáctica
+    // contraentrega 
     payment_method: {
       type: DataTypes.STRING(30),
       allowNull: false,
       defaultValue: "CASH_ON_DELIVERY",
     },
 
-    // ✅ NUEVO: estado simple para historial
+    // estado simple  
     status: {
       type: DataTypes.STRING(20),
       allowNull: false,
       defaultValue: "PENDING",
     },
 
-    // ✅ NUEVO: contacto que el comprador decide compartir
+    // contacto que el comprador decide compartir
     contact_phone: { type: DataTypes.STRING(20), allowNull: true },
     contact_email: { type: DataTypes.STRING(120), allowNull: true },
   },

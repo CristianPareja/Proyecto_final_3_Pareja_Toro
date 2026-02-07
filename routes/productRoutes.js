@@ -4,13 +4,11 @@ const router = express.Router();
 
 const { Product, User } = require("../models");
 
-// Si tu middleware tiene otro nombre/ruta, ajusta este require:
 const auth = require("../middlewares/auth"); 
 // auth debe dejar el usuario en: req.user = { id, username, ... }
 
-// ===============================
 // Helpers
-// ===============================
+
 function toInt(v, def = 0) {
   const n = parseInt(v, 10);
   return Number.isNaN(n) ? def : n;
@@ -21,10 +19,8 @@ function toNumber(v, def = 0) {
   return Number.isNaN(n) ? def : n;
 }
 
-// ===============================
 // GET /api/products
-// Lista SOLO productos con stock (>0) e incluye info del vendedor
-// ===============================
+
 router.get("/", async (req, res, next) => {
   try {
     const products = await Product.findAll({
@@ -45,11 +41,8 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-// ===============================
 // POST /api/products
-// Crear producto (requiere login)
-// seller_id se toma desde el token (req.user.id)
-// ===============================
+
 router.post("/", auth, async (req, res, next) => {
   try {
     const { name, description, quantity, price } = req.body || {};
@@ -87,10 +80,8 @@ router.post("/", auth, async (req, res, next) => {
   }
 });
 
-// ===============================
 // PUT /api/products/:id
-// Editar producto (solo dueño)
-// ===============================
+
 router.put("/:id", auth, async (req, res, next) => {
   try {
     const id = toInt(req.params.id);
@@ -131,10 +122,9 @@ router.put("/:id", auth, async (req, res, next) => {
   }
 });
 
-// ===============================
+
 // DELETE /api/products/:id
-// Eliminar producto (solo dueño)
-// ===============================
+
 router.delete("/:id", auth, async (req, res, next) => {
   try {
     const id = toInt(req.params.id);
@@ -154,12 +144,10 @@ router.delete("/:id", auth, async (req, res, next) => {
   }
 });
 
-// ===============================
+
 // POST /api/products/:id/buy
 // Compra directa (baja stock) - requiere login
-// Body: { quantity: number }
-// (Esto te arregla el 404 que ves en el front)
-// ===============================
+
 router.post("/:id/buy", auth, async (req, res, next) => {
   try {
     const id = toInt(req.params.id);
@@ -175,7 +163,7 @@ router.post("/:id/buy", auth, async (req, res, next) => {
       return res.status(400).json({ message: "No hay stock suficiente" });
     }
 
-    // Evitar que el vendedor se compre a sí mismo (opcional)
+    // Evitar que el vendedor se compre a sí mismo 
     if (product.seller_id === req.user.id) {
       return res.status(400).json({ message: "No puedes comprar tu propio producto" });
     }

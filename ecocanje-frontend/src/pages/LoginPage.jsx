@@ -3,11 +3,11 @@ import api from "../api/client";
 import Loader from "../components/Loader";
 
 export default function LoginPage({ onLogin }) {
-  const [mode, setMode] = useState("login"); // login | register
+  const [mode, setMode] = useState("login");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // ✅ Incluimos los campos de contacto para registro
+  // campos de contacto para registro
   const [form, setForm] = useState({
     username: "",
     password: "",
@@ -123,7 +123,7 @@ export default function LoginPage({ onLogin }) {
             />
           </div>
 
-          {/*Campos extra SOLO en registro */}
+          {/*Campos extra solo en registro */}
           {mode === "register" && (
             <>
               <div>

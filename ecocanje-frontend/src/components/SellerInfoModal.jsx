@@ -69,7 +69,7 @@ export default function SellerInfoModal({ open, onClose, seller, requestStatus }
             </div>
           ) : (
             <>
-              {/* Si tu backend devuelve banca dentro de seller, aquí se verá. */}
+              {/* para mostrar informacion bancaria */}
               {field("Banco", seller?.bank_name)}
               {field("Tipo de cuenta", seller?.account_type)}
               {field("Número de cuenta", seller?.account_number)}

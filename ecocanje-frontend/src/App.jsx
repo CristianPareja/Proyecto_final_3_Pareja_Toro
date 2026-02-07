@@ -20,7 +20,7 @@ export default function App() {
     setSession({ token: "", username: "" });
   };
 
-  // Si el token es inválido, backend responderá 401; en ese caso puedes mejorar luego con interceptors.
+  // Si el token es inválido, backend responderá 401
   useEffect(() => {}, []);
 
   if (!isLogged) return <LoginPage onLogin={handleLogin} />;

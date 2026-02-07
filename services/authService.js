@@ -29,7 +29,7 @@ class AuthService {
       throw { status: 400, message: "Password must be at least 6 characters" };
     }
 
-    // Validaciones suaves (no obligatorias, pero sanitizamos)
+    // Validaciones 
     const clean = (v) => (v === undefined || v === null ? null : String(v).trim());
     const cleanPhone = (v) => {
       const s = clean(v);
