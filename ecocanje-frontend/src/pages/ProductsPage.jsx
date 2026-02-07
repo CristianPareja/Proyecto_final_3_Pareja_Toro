@@ -15,7 +15,6 @@ function safeDecodeJwt(token) {
   }
 }
 
-// Intento de sacar userId del token si existe (depende de tu backend)
 function getUserIdFromToken(token) {
   const p = safeDecodeJwt(token);
   if (!p) return null;
@@ -23,9 +22,16 @@ function getUserIdFromToken(token) {
 }
 
 export default function ProductsPage({ onLogout }) {
-  const username = localStorage.getItem("username") || "Usuario";
   const token = localStorage.getItem("token") || "";
-  const currentUserId = getUserIdFromToken(token); // si tu JWT trae id, esto sirve
+  const usernameLS = localStorage.getItem("username") || "Usuario";
+
+  // ✅ Mejor: traer el usuario real del backend
+  const [me, setMe] = useState({
+    id: getUserIdFromToken(token),
+    username: usernameLS,
+  });
+
+  const currentUserId = me?.id || null;
 
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -50,7 +56,29 @@ export default function ProductsPage({ onLogout }) {
   const [actionLoading, setActionLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const load = async () => {
+  // mini toast para buyer al cambiar estado
+  const [buyerNotice, setBuyerNotice] = useState("");
+
+  // -------------------------
+  // Cargar usuario real (si existe /api/auth/me)
+  // -------------------------
+  useEffect(() => {
+    const loadMe = async () => {
+      try {
+        const res = await api.get("/api/auth/me");
+        // esperado: { id, username, ... }
+        if (res?.data?.id) {
+          setMe({ id: res.data.id, username: res.data.username || usernameLS });
+        }
+      } catch {
+        // si no existe endpoint, no pasa nada (quedamos con JWT/localStorage)
+      }
+    };
+    if (token) loadMe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const loadProducts = async () => {
     setLoading(true);
     setError("");
     try {
@@ -64,64 +92,59 @@ export default function ProductsPage({ onLogout }) {
   };
 
   useEffect(() => {
-    load();
+    loadProducts();
   }, []);
 
+  // -------------------------
   // ✅ Polling: solicitudes pendientes del vendedor (cada 5s)
+  // -------------------------
   useEffect(() => {
-    let timer = null;
+  let timer = null;
 
-    const fetchPending = async () => {
-      try {
-        // Si tu backend usa sellerId en la URL:
-        if (currentUserId) {
-          const res = await api.get(`/api/purchase-requests/seller/${currentUserId}/pending`);
-          setPendingRequests(res.data.requests || []);
-          return;
-        }
+  const fetchPending = async () => {
+    try {
+      const res = await api.get(
+        "/api/purchase-requests/seller/pending"
+      );
+      setPendingRequests(res.data.requests || []);
+    } catch (e) {
+      console.error("Error cargando notificaciones", e);
+    }
+  };
 
-        // Si tu backend infiere vendedor por token (si tienes endpoint así), cámbialo aquí:
-        // const res = await api.get(`/api/purchase-requests/seller/pending`);
-        // setPendingRequests(res.data.requests || []);
+  fetchPending();
+  timer = setInterval(fetchPending, 5000);
 
-      } catch {
-        // no rompas la app si aún no está listo
-      }
-    };
+  return () => clearInterval(timer);
+}, []);
 
-    fetchPending();
-    timer = setInterval(fetchPending, 5000);
 
-    return () => clearInterval(timer);
-  }, [currentUserId]);
-
+  // -------------------------
   // ✅ Polling: estado de la solicitud creada por Buyer (cada 3s)
+  // -------------------------
   useEffect(() => {
-    if (!createdRequestId) return;
+    if (!createdRequestId || !currentUserId) return;
+
     let timer = null;
 
     const pollStatus = async () => {
       try {
-        // Endpoint que tú ya creaste (según lo que hablamos)
-        // GET /api/purchase-requests/:id/buyer/:buyerId/can-see-bank
-        if (currentUserId) {
-          const res = await api.get(
-            `/api/purchase-requests/${createdRequestId}/buyer/${currentUserId}/can-see-bank`
+        const res = await api.get(
+          `/api/purchase-requests/${createdRequestId}/buyer/${currentUserId}/can-see-bank`
+        );
+
+        const newStatus = res.data.status;
+        setRequestStatus(newStatus);
+
+        // aviso si cambia a accepted/rejected
+        if (newStatus && newStatus !== "PENDING") {
+          setBuyerNotice(
+            newStatus === "ACCEPTED"
+              ? "✅ Tu solicitud fue ACEPTADA. Ya puedes ver los datos del vendedor."
+              : "❌ Tu solicitud fue RECHAZADA por el vendedor."
           );
-          setRequestStatus(res.data.status);
-
-          // cuando ya no es pending, detén polling
-          if (res.data.status !== "PENDING") {
-            clearInterval(timer);
-          }
-          return;
+          clearInterval(timer);
         }
-
-        // Si tu backend infiere buyer por token, cámbialo aquí:
-        // const res = await api.get(`/api/purchase-requests/${createdRequestId}/can-see-bank`);
-        // setRequestStatus(res.data.status);
-        // if (res.data.status !== "PENDING") clearInterval(timer);
-
       } catch {
         // ignora
       }
@@ -140,7 +163,7 @@ export default function ProductsPage({ onLogout }) {
 
   const addSingle = (p) => {
     setError("");
-    const qty = parseInt(qtyInput[p.id] ?? 1);
+    const qty = parseInt(qtyInput[p.id] ?? 1, 10);
     if (isNaN(qty) || qty <= 0) return alert("Cantidad inválida");
     if (qty > p.quantity) return alert("No hay stock suficiente");
     setSelected({ product: p, qty });
@@ -148,36 +171,32 @@ export default function ProductsPage({ onLogout }) {
 
   const clearSelection = () => setSelected(null);
 
-  // ✅ Buyer: crea solicitud PENDING (NO baja stock)
+  // -------------------------
+  // ✅ Buyer: crear solicitud PENDING (NO baja stock)
+  // -------------------------
   const solicitarCompra = async () => {
     if (!selected) return alert("Primero añade un producto al detalle.");
+    if (!currentUserId) return alert("No se pudo identificar al usuario (ID).");
+
     setActionLoading(true);
     setError("");
+    setBuyerNotice("");
 
     try {
-      // crea request (tu backend ya lo tiene)
-      // POST /api/purchase-requests { productId, buyerId, quantity }
       const payload = {
         productId: selected.product.id,
+        buyerId: currentUserId,
         quantity: selected.qty,
       };
 
-      // si tu backend requiere buyerId, lo mandamos (si lo podemos obtener)
-      if (currentUserId) payload.buyerId = currentUserId;
-
       const res = await api.post("/api/purchase-requests", payload);
 
-      // guarda requestId y vendedor para modal
       setCreatedRequestId(res.data.id);
       setRequestStatus("PENDING");
 
       setSelectedSeller(selected.product.seller || null);
       setOpenSeller(true);
 
-      // NO refrescamos stock aquí (no debe cambiar)
-      // await load();
-
-      // limpiamos selección
       setSelected(null);
     } catch (e) {
       setError(e?.response?.data?.message || "Error solicitando compra");
@@ -186,23 +205,27 @@ export default function ProductsPage({ onLogout }) {
     }
   };
 
-  // ✅ Vendedor: aceptar/rechazar
+  // -------------------------
+  // ✅ Vendedor: aceptar/rechazar solicitud (stock baja SOLO si acepta)
+  // -------------------------
   const acceptRequest = async (req) => {
+    if (!currentUserId) return alert("No se pudo identificar al vendedor (ID).");
+
     setActionLoading(true);
     setError("");
+
     try {
-      const body = {};
-      if (currentUserId) body.sellerId = currentUserId;
+      await api.post(`/api/purchase-requests/${req.id}/accept`, {
+        sellerId: currentUserId,
+      });
 
-      await api.post(`/api/purchase-requests/${req.id}/accept`, body);
+      // refresca productos y pendientes
+      await loadProducts();
 
-      // refresca pendientes y productos (stock pudo bajar)
-      await load();
-
-      if (currentUserId) {
-        const res = await api.get(`/api/purchase-requests/seller/${currentUserId}/pending`);
-        setPendingRequests(res.data.requests || []);
-      }
+      const res = await api.get(
+        `/api/purchase-requests/seller/${currentUserId}/pending`
+      );
+      setPendingRequests(res.data.requests || []);
     } catch (e) {
       setError(e?.response?.data?.message || "Error aceptando solicitud");
     } finally {
@@ -211,25 +234,93 @@ export default function ProductsPage({ onLogout }) {
   };
 
   const rejectRequest = async (req) => {
+    if (!currentUserId) return alert("No se pudo identificar al vendedor (ID).");
+
     setActionLoading(true);
     setError("");
+
     try {
-      const body = {};
-      if (currentUserId) body.sellerId = currentUserId;
+      await api.post(`/api/purchase-requests/${req.id}/reject`, {
+        sellerId: currentUserId,
+      });
 
-      await api.post(`/api/purchase-requests/${req.id}/reject`, body);
-
-      // refresca pendientes (stock no cambia)
-      if (currentUserId) {
-        const res = await api.get(`/api/purchase-requests/seller/${currentUserId}/pending`);
-        setPendingRequests(res.data.requests || []);
-      }
+      const res = await api.get(
+        `/api/purchase-requests/seller/pending`
+      );
+      setPendingRequests(res.data.requests || []);
     } catch (e) {
       setError(e?.response?.data?.message || "Error rechazando solicitud");
     } finally {
       setActionLoading(false);
     }
   };
+
+  // -------------------------
+  // ✅ Update/Delete producto (solo dueño)
+  // -------------------------
+  const isOwner = (p) => {
+    const sellerId = p.seller_id || p.seller?.id || p.seller?.user_id;
+    return sellerId && currentUserId && Number(sellerId) === Number(currentUserId);
+  };
+
+  const updateProduct = async (p) => {
+    if (!isOwner(p)) return alert("Solo el dueño puede editar este producto.");
+
+    const name = prompt("Nuevo nombre:", p.name);
+    if (name === null) return;
+
+    const description = prompt("Nueva descripción:", p.description);
+    if (description === null) return;
+
+    const priceStr = prompt("Nuevo precio:", String(p.price));
+    if (priceStr === null) return;
+    const price = Number(priceStr);
+
+    const qtyStr = prompt("Nuevo stock (cantidad):", String(p.quantity));
+    if (qtyStr === null) return;
+    const quantity = Number(qtyStr);
+
+    if (!name.trim()) return alert("Nombre inválido");
+    if (!description.trim()) return alert("Descripción inválida");
+    if (isNaN(price) || price < 0) return alert("Precio inválido");
+    if (isNaN(quantity) || quantity < 0) return alert("Cantidad inválida");
+
+    setActionLoading(true);
+    setError("");
+
+    try {
+      await api.put(`/api/products/${p.id}`, {
+        name: name.trim(),
+        description: description.trim(),
+        price,
+        quantity,
+      });
+      await loadProducts();
+    } catch (e) {
+      setError(e?.response?.data?.message || "Error actualizando producto");
+    } finally {
+      setActionLoading(false);
+    }
+  };
+
+  const deleteProduct = async (p) => {
+    if (!isOwner(p)) return alert("Solo el dueño puede eliminar este producto.");
+    if (!confirm(`¿Eliminar "${p.name}"?`)) return;
+
+    setActionLoading(true);
+    setError("");
+
+    try {
+      await api.delete(`/api/products/${p.id}`);
+      await loadProducts();
+    } catch (e) {
+      setError(e?.response?.data?.message || "Error eliminando producto");
+    } finally {
+      setActionLoading(false);
+    }
+  };
+
+  const displayUsername = me?.username || usernameLS;
 
   return (
     <div className="min-h-screen bg-white">
@@ -248,7 +339,7 @@ export default function ProductsPage({ onLogout }) {
 
           <div className="flex items-center gap-3">
             <div className="text-right">
-              <div className="text-sm font-semibold text-eco-900">{username}</div>
+              <div className="text-sm font-semibold text-eco-900">{displayUsername}</div>
               <div className="text-xs text-eco-900/60">Sesión activa</div>
             </div>
 
@@ -283,12 +374,18 @@ export default function ProductsPage({ onLogout }) {
           <h1 className="text-xl font-bold text-eco-900">Productos disponibles</h1>
 
           <button
-            onClick={load}
+            onClick={loadProducts}
             className="rounded-xl border border-eco-200 px-4 py-2 text-sm font-semibold text-eco-900 hover:bg-eco-50"
           >
             Refrescar
           </button>
         </div>
+
+        {buyerNotice && (
+          <div className="mt-4 rounded-xl bg-eco-50 border border-eco-200 p-3 text-sm text-eco-900">
+            {buyerNotice}
+          </div>
+        )}
 
         {error && (
           <div className="mt-4 rounded-xl bg-red-50 border border-red-200 p-3 text-sm text-red-700">
@@ -296,18 +393,22 @@ export default function ProductsPage({ onLogout }) {
           </div>
         )}
 
-        {loading ? (
+        {(loading || actionLoading) && (
           <div className="mt-6">
-            <Loader label="Cargando productos..." />
+            <Loader label={loading ? "Cargando productos..." : "Procesando..."} />
           </div>
-        ) : products.length === 0 ? (
+        )}
+
+        {!loading && products.length === 0 ? (
           <div className="mt-6 rounded-xl border border-eco-100 p-4 text-sm text-eco-900/70">
             No hay productos con stock disponible.
           </div>
-        ) : (
+        ) : !loading ? (
           <div className="mt-6 grid gap-4 md:grid-cols-2">
             {products.map((p) => {
-              const sellerName = p.seller?.full_name?.trim() || p.seller?.username || "Vendedor";
+              const sellerName =
+                p.seller?.full_name?.trim() || p.seller?.username || "Vendedor";
+
               return (
                 <div
                   key={p.id}
@@ -351,19 +452,39 @@ export default function ProductsPage({ onLogout }) {
                     >
                       Añadir
                     </button>
+
+                    {/* ✅ SOLO DUEÑO: Update/Delete */}
+                    {isOwner(p) && (
+                      <div className="ml-auto flex gap-2">
+                        <button
+                          onClick={() => updateProduct(p)}
+                          className="rounded-xl border border-eco-200 px-3 py-2 text-sm font-semibold text-eco-900 hover:bg-eco-50"
+                        >
+                          Editar
+                        </button>
+                        <button
+                          onClick={() => deleteProduct(p)}
+                          className="rounded-xl border border-red-200 px-3 py-2 text-sm font-semibold text-red-700 hover:bg-red-50"
+                        >
+                          Eliminar
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </div>
               );
             })}
           </div>
-        )}
+        ) : null}
 
         {/* Detalle compra */}
         <div className="mt-8 rounded-2xl border border-eco-100 bg-white p-4 shadow-sm">
           <div className="flex items-center justify-between gap-4">
             <div>
               <div className="text-lg font-semibold text-eco-900">Detalle</div>
-              <div className="text-sm text-eco-900/60">Puedes solicitar compra de 1 producto a la vez.</div>
+              <div className="text-sm text-eco-900/60">
+                Puedes solicitar compra de 1 producto a la vez.
+              </div>
             </div>
 
             {selected && (
@@ -377,7 +498,9 @@ export default function ProductsPage({ onLogout }) {
           </div>
 
           {!selected ? (
-            <div className="mt-4 text-sm text-eco-900/70">No has añadido ningún producto todavía.</div>
+            <div className="mt-4 text-sm text-eco-900/70">
+              No has añadido ningún producto todavía.
+            </div>
           ) : (
             <div className="mt-4 rounded-xl border border-eco-100 p-3">
               <div className="flex items-start justify-between gap-4">
@@ -405,8 +528,8 @@ export default function ProductsPage({ onLogout }) {
 
               {createdRequestId && (
                 <div className="mt-3 text-xs text-eco-900/60">
-                  Solicitud creada: <span className="font-semibold">#{createdRequestId}</span> · Estado:{" "}
-                  <span className="font-semibold">{requestStatus || "PENDING"}</span>
+                  Solicitud creada: <span className="font-semibold">#{createdRequestId}</span> ·
+                  Estado: <span className="font-semibold">{requestStatus || "PENDING"}</span>
                 </div>
               )}
             </div>
@@ -433,7 +556,7 @@ export default function ProductsPage({ onLogout }) {
       />
 
       {/* modal publicar producto */}
-      <AddProductModal open={openAdd} onClose={() => setOpenAdd(false)} onCreated={load} />
+      <AddProductModal open={openAdd} onClose={() => setOpenAdd(false)} onCreated={loadProducts} />
     </div>
   );
 }

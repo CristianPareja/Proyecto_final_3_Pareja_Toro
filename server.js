@@ -17,6 +17,7 @@ require("./models");
 const authRoutes = require("./routes/authRoutes");
 const productRoutes = require("./routes/productRoutes");
 const orderRoutes = require("./routes/orderRoutes");
+const purchaseRequestRoutes = require("./routes/purchaseRequestRoutes");
 
 // Middlewares
 app.use(cors({ origin: "http://localhost:5173", credentials: true }));
@@ -27,6 +28,7 @@ app.get("/", (req, res) => res.send("EcoCanje API funcionando "));
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);
+app.use("/api/purchase-requests", purchaseRequestRoutes);
 
 // Middleware errores
 app.use((err, req, res, next) => {

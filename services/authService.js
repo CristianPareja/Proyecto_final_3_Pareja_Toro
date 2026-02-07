@@ -1,3 +1,4 @@
+// services/authService.js
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const userRepository = require("../repositories/userRepositoryORM");
@@ -6,7 +7,15 @@ class AuthService {
   async register(data) {
     if (!data) throw { status: 400, message: "Body vacío" };
 
-    const { username, password } = data;
+    const {
+      username,
+      password,
+      full_name,
+      phone,
+      bank_name,
+      account_type,
+      account_number,
+    } = data;
 
     if (!username || !password) {
       throw { status: 400, message: "Fields missing (username, password)" };
@@ -20,6 +29,17 @@ class AuthService {
       throw { status: 400, message: "Password must be at least 6 characters" };
     }
 
+    // Validaciones suaves (no obligatorias, pero sanitizamos)
+    const clean = (v) => (v === undefined || v === null ? null : String(v).trim());
+    const cleanPhone = (v) => {
+      const s = clean(v);
+      if (!s) return null;
+      // permite +593, números, espacios y guiones
+      const ok = /^[0-9+\-\s]{7,20}$/.test(s);
+      if (!ok) throw { status: 400, message: "Phone inválido" };
+      return s;
+    };
+
     const existing = await userRepository.findByUsername(username.trim());
     if (existing) throw { status: 400, message: "Username already exists" };
 
@@ -28,9 +48,25 @@ class AuthService {
     const user = await userRepository.create({
       username: username.trim(),
       password_hash,
+      full_name: clean(full_name),
+      phone: cleanPhone(phone),
+      bank_name: clean(bank_name),
+      account_type: clean(account_type),
+      account_number: clean(account_number),
     });
 
-    return { id: user.id, username: user.username };
+    return {
+      message: "User created",
+      user: {
+        id: user.id,
+        username: user.username,
+        full_name: user.full_name,
+        phone: user.phone,
+        bank_name: user.bank_name,
+        account_type: user.account_type,
+        account_number: user.account_number,
+      },
+    };
   }
 
   async login(data) {
@@ -57,7 +93,15 @@ class AuthService {
     return {
       message: "Login successful",
       token,
-      user: { id: user.id, username: user.username },
+      user: {
+        id: user.id,
+        username: user.username,
+        full_name: user.full_name,
+        phone: user.phone,
+        bank_name: user.bank_name,
+        account_type: user.account_type,
+        account_number: user.account_number,
+      },
     };
   }
 }

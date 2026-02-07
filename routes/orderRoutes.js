@@ -1,27 +1,31 @@
+// routes/orderRoutes.js
 const express = require("express");
 const router = express.Router();
 
 const auth = require("../middlewares/auth");
 const orderService = require("../services/orderService");
 
-// ✅ POST /api/orders/checkout -> crea orden + items desde carrito
-router.post("/checkout", auth, async (req, res, next) => {
+// POST /api/orders  -> crea compra (baja stock)
+router.post("/", auth, async (req, res, next) => {
   try {
-    const { items, contact } = req.body;
-    const result = await orderService.checkoutCart(req.user.id, items, contact);
-    res.status(201).json(result);
-  } catch (err) {
-    next(err);
-  }
-});
+    // body esperado por tu frontend:
+    // { productId, quantity }
+    // (opcional) payment_method, contact_phone, contact_email
+    const buyerId = req.user?.id || req.user?.userId || req.user?.sub;
+    if (!buyerId) return res.status(401).json({ message: "No user id in token", status: 401 });
 
-// ✅ GET /api/orders/my -> historial del comprador logueado
-router.get("/my", auth, async (req, res, next) => {
-  try {
-    const result = await orderService.getMyPurchases(req.user.id);
-    res.json(result);
+    const result = await orderService.createSingleProductOrder({
+      buyerId,
+      productId: req.body.productId,
+      quantity: req.body.quantity,
+      payment_method: req.body.payment_method || "CASH_ON_DELIVERY",
+      contact_phone: req.body.contact_phone || null,
+      contact_email: req.body.contact_email || null,
+    });
+
+    return res.status(201).json(result);
   } catch (err) {
-    next(err);
+    return next(err);
   }
 });
 

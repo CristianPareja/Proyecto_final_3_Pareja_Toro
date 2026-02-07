@@ -215,3 +215,447 @@ pg_dump: error: connection to server at "postgres" (172.20.0.2), port 5432 faile
 [Thu Feb  5 21:46:01 UTC 2026] Backup exitoso: ecocanje_db_20260205_214601.sql
 [Thu Feb  5 21:47:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
 [Thu Feb  5 21:47:01 UTC 2026] Backup exitoso: ecocanje_db_20260205_214701.sql
+[Sat Feb  7 00:27:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 00:27:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_002701.sql
+[Sat Feb  7 00:28:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 00:28:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_002801.sql
+[Sat Feb  7 00:29:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 00:29:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_002901.sql
+[Sat Feb  7 00:30:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 00:30:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_003001.sql
+[Sat Feb  7 00:31:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 00:31:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_003101.sql
+[Sat Feb  7 00:32:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 00:32:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_003201.sql
+[Sat Feb  7 00:33:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 00:33:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_003301.sql
+[Sat Feb  7 00:34:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 00:34:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_003401.sql
+[Sat Feb  7 00:35:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 00:35:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_003501.sql
+[Sat Feb  7 00:36:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 00:36:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_003601.sql
+[Sat Feb  7 00:37:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 00:37:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_003701.sql
+[Sat Feb  7 00:38:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 00:38:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_003801.sql
+[Sat Feb  7 00:39:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 00:39:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_003901.sql
+[Sat Feb  7 00:40:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 00:40:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_004001.sql
+[Sat Feb  7 00:41:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 00:41:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_004101.sql
+[Sat Feb  7 00:42:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 00:42:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_004201.sql
+[Sat Feb  7 00:43:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 00:43:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_004301.sql
+[Sat Feb  7 00:44:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 00:44:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_004401.sql
+[Sat Feb  7 00:45:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 00:45:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_004501.sql
+[Sat Feb  7 00:46:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 00:46:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_004601.sql
+[Sat Feb  7 00:47:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 00:47:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_004701.sql
+[Sat Feb  7 00:48:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 00:48:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_004801.sql
+[Sat Feb  7 00:49:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 00:49:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_004901.sql
+[Sat Feb  7 00:50:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 00:50:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_005001.sql
+[Sat Feb  7 00:51:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 00:51:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_005101.sql
+[Sat Feb  7 00:52:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 00:52:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_005201.sql
+[Sat Feb  7 00:53:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 00:53:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_005301.sql
+[Sat Feb  7 00:54:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 00:54:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_005401.sql
+[Sat Feb  7 00:55:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 00:55:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_005501.sql
+[Sat Feb  7 00:56:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 00:56:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_005601.sql
+[Sat Feb  7 00:57:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 00:57:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_005701.sql
+[Sat Feb  7 00:58:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 00:58:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_005801.sql
+[Sat Feb  7 00:59:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 00:59:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_005901.sql
+[Sat Feb  7 01:00:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:00:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_010001.sql
+[Sat Feb  7 01:01:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:01:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_010101.sql
+[Sat Feb  7 01:02:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:02:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_010201.sql
+[Sat Feb  7 01:03:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:03:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_010301.sql
+[Sat Feb  7 01:04:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:04:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_010401.sql
+[Sat Feb  7 01:05:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:05:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_010501.sql
+[Sat Feb  7 01:06:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:06:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_010601.sql
+[Sat Feb  7 01:07:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:07:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_010701.sql
+[Sat Feb  7 01:08:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:08:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_010801.sql
+[Sat Feb  7 01:09:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:09:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_010901.sql
+[Sat Feb  7 01:10:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:10:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_011001.sql
+[Sat Feb  7 01:11:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:11:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_011101.sql
+[Sat Feb  7 01:12:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:12:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_011201.sql
+[Sat Feb  7 01:13:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:13:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_011301.sql
+[Sat Feb  7 01:14:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:14:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_011401.sql
+[Sat Feb  7 01:15:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:15:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_011501.sql
+[Sat Feb  7 01:16:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:16:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_011601.sql
+[Sat Feb  7 01:17:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:17:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_011701.sql
+[Sat Feb  7 01:18:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:18:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_011801.sql
+[Sat Feb  7 01:19:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:19:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_011901.sql
+[Sat Feb  7 01:20:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:20:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_012001.sql
+[Sat Feb  7 01:21:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:21:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_012101.sql
+[Sat Feb  7 01:22:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:22:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_012201.sql
+[Sat Feb  7 01:23:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:23:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_012301.sql
+[Sat Feb  7 01:24:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:24:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_012401.sql
+[Sat Feb  7 01:25:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:25:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_012501.sql
+[Sat Feb  7 01:26:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:26:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_012601.sql
+[Sat Feb  7 01:27:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:27:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_012701.sql
+[Sat Feb  7 01:28:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:28:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_012801.sql
+[Sat Feb  7 01:30:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:30:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_013001.sql
+[Sat Feb  7 01:31:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:31:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_013101.sql
+[Sat Feb  7 01:32:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:32:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_013201.sql
+[Sat Feb  7 01:33:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:33:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_013301.sql
+[Sat Feb  7 01:34:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:34:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_013401.sql
+[Sat Feb  7 01:35:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:35:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_013501.sql
+[Sat Feb  7 01:36:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:36:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_013601.sql
+[Sat Feb  7 01:37:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:37:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_013701.sql
+[Sat Feb  7 01:38:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:38:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_013801.sql
+[Sat Feb  7 01:39:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:39:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_013901.sql
+[Sat Feb  7 01:40:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:40:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_014001.sql
+[Sat Feb  7 01:41:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:41:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_014101.sql
+[Sat Feb  7 01:42:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:42:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_014201.sql
+[Sat Feb  7 01:43:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:43:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_014301.sql
+[Sat Feb  7 01:44:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:44:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_014401.sql
+[Sat Feb  7 01:45:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:45:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_014501.sql
+[Sat Feb  7 01:46:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:46:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_014601.sql
+[Sat Feb  7 01:47:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:47:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_014701.sql
+[Sat Feb  7 01:48:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:48:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_014801.sql
+[Sat Feb  7 01:49:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:49:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_014901.sql
+[Sat Feb  7 01:50:02 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:50:05 UTC 2026] Backup exitoso: ecocanje_db_20260207_015002.sql
+[Sat Feb  7 01:51:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:51:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_015101.sql
+[Sat Feb  7 01:52:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:52:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_015201.sql
+[Sat Feb  7 01:53:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:53:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_015301.sql
+[Sat Feb  7 01:54:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:54:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_015401.sql
+[Sat Feb  7 01:55:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:55:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_015501.sql
+[Sat Feb  7 01:56:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:56:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_015601.sql
+[Sat Feb  7 01:57:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:57:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_015701.sql
+[Sat Feb  7 01:58:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:58:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_015801.sql
+[Sat Feb  7 01:59:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 01:59:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_015901.sql
+[Sat Feb  7 02:00:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 02:00:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_020001.sql
+[Sat Feb  7 02:01:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 02:01:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_020101.sql
+[Sat Feb  7 02:02:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 02:02:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_020201.sql
+[Sat Feb  7 02:05:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 02:05:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_020501.sql
+[Sat Feb  7 02:10:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 02:10:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_021001.sql
+[Sat Feb  7 02:15:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 02:15:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_021501.sql
+[Sat Feb  7 02:20:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 02:20:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_022001.sql
+[Sat Feb  7 02:25:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 02:25:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_022501.sql
+[Sat Feb  7 02:30:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 02:30:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_023001.sql
+[Sat Feb  7 02:35:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 02:35:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_023501.sql
+[Sat Feb  7 02:40:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 02:40:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_024001.sql
+[Sat Feb  7 02:45:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 02:45:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_024501.sql
+[Sat Feb  7 02:50:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 02:50:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_025001.sql
+[Sat Feb  7 02:55:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 02:55:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_025501.sql
+[Sat Feb  7 03:00:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 03:00:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_030001.sql
+[Sat Feb  7 03:05:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 03:05:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_030501.sql
+[Sat Feb  7 03:10:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 03:10:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_031001.sql
+[Sat Feb  7 03:15:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 03:15:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_031501.sql
+[Sat Feb  7 03:20:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 03:20:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_032001.sql
+[Sat Feb  7 03:25:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 03:25:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_032501.sql
+[Sat Feb  7 03:30:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 03:30:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_033001.sql
+[Sat Feb  7 03:35:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 03:35:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_033501.sql
+[Sat Feb  7 03:40:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 03:40:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_034001.sql
+[Sat Feb  7 03:45:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 03:45:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_034501.sql
+[Sat Feb  7 03:50:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 03:50:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_035001.sql
+[Sat Feb  7 03:55:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 03:55:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_035501.sql
+[Sat Feb  7 03:58:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 03:58:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_035801.sql
+[Sat Feb  7 03:59:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 03:59:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_035901.sql
+[Sat Feb  7 04:00:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:00:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_040001.sql
+[Sat Feb  7 04:01:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:01:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_040101.sql
+[Sat Feb  7 04:02:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:02:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_040201.sql
+[Sat Feb  7 04:03:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:03:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_040301.sql
+[Sat Feb  7 04:04:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:04:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_040401.sql
+[Sat Feb  7 04:05:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:05:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_040501.sql
+[Sat Feb  7 04:06:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:06:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_040601.sql
+[Sat Feb  7 04:07:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:07:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_040701.sql
+[Sat Feb  7 04:08:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:08:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_040801.sql
+[Sat Feb  7 04:09:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:09:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_040901.sql
+[Sat Feb  7 04:10:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:10:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_041001.sql
+[Sat Feb  7 04:11:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:11:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_041101.sql
+[Sat Feb  7 04:12:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:12:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_041201.sql
+[Sat Feb  7 04:13:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:13:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_041301.sql
+[Sat Feb  7 04:14:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:14:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_041401.sql
+[Sat Feb  7 04:15:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:15:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_041501.sql
+[Sat Feb  7 04:16:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:16:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_041601.sql
+[Sat Feb  7 04:17:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:17:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_041701.sql
+[Sat Feb  7 04:18:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:18:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_041801.sql
+[Sat Feb  7 04:19:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:19:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_041901.sql
+[Sat Feb  7 04:20:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:20:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_042001.sql
+[Sat Feb  7 04:21:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:21:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_042101.sql
+[Sat Feb  7 04:22:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:22:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_042201.sql
+[Sat Feb  7 04:23:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:23:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_042301.sql
+[Sat Feb  7 04:24:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:24:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_042401.sql
+[Sat Feb  7 04:25:53 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:25:53 UTC 2026] Backup exitoso: ecocanje_db_20260207_042553.sql
+[Sat Feb  7 04:26:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:26:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_042601.sql
+[Sat Feb  7 04:27:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:27:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_042701.sql
+[Sat Feb  7 04:28:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:28:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_042801.sql
+[Sat Feb  7 04:29:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:29:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_042901.sql
+[Sat Feb  7 04:30:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:30:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_043001.sql
+[Sat Feb  7 04:31:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:31:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_043101.sql
+[Sat Feb  7 04:32:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:32:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_043201.sql
+[Sat Feb  7 04:33:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:33:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_043301.sql
+[Sat Feb  7 04:34:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:34:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_043401.sql
+[Sat Feb  7 04:35:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:35:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_043501.sql
+[Sat Feb  7 04:36:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:36:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_043601.sql
+[Sat Feb  7 04:37:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:37:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_043701.sql
+[Sat Feb  7 04:38:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:38:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_043801.sql
+[Sat Feb  7 04:39:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:39:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_043901.sql
+[Sat Feb  7 04:40:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:40:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_044001.sql
+[Sat Feb  7 04:41:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:41:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_044101.sql
+[Sat Feb  7 04:42:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:42:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_044201.sql
+[Sat Feb  7 04:43:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:43:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_044301.sql
+[Sat Feb  7 04:44:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:44:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_044401.sql
+[Sat Feb  7 04:45:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:45:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_044501.sql
+[Sat Feb  7 04:46:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:46:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_044601.sql
+[Sat Feb  7 04:47:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:47:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_044701.sql
+[Sat Feb  7 04:48:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:48:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_044801.sql
+[Sat Feb  7 04:49:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:49:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_044901.sql
+[Sat Feb  7 04:50:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:50:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_045001.sql
+[Sat Feb  7 04:51:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:51:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_045101.sql
+[Sat Feb  7 04:52:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:52:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_045201.sql
+[Sat Feb  7 04:53:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:53:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_045301.sql
+[Sat Feb  7 04:56:00 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:56:00 UTC 2026] Backup exitoso: ecocanje_db_20260207_045600.sql
+[Sat Feb  7 04:56:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:56:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_045601.sql
+[Sat Feb  7 04:56:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:56:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_045601.sql
+[Sat Feb  7 04:57:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:57:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_045701.sql
+[Sat Feb  7 04:58:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:58:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_045801.sql
+[Sat Feb  7 04:59:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 04:59:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_045901.sql
+[Sat Feb  7 05:00:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:00:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_050001.sql
+[Sat Feb  7 05:01:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:01:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_050101.sql
+[Sat Feb  7 05:02:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:02:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_050201.sql
+[Sat Feb  7 05:03:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:03:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_050301.sql
+[Sat Feb  7 05:04:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:04:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_050401.sql
+[Sat Feb  7 05:05:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:05:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_050501.sql
+[Sat Feb  7 05:06:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:06:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_050601.sql
+[Sat Feb  7 05:07:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:07:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_050701.sql
+[Sat Feb  7 05:08:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:08:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_050801.sql
+[Sat Feb  7 05:09:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:09:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_050901.sql
+[Sat Feb  7 05:10:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:10:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_051001.sql
+[Sat Feb  7 05:11:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:11:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_051101.sql
+[Sat Feb  7 05:12:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:12:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_051201.sql
+[Sat Feb  7 05:13:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:13:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_051301.sql
+[Sat Feb  7 05:14:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:14:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_051401.sql
+[Sat Feb  7 05:15:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:15:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_051501.sql
+[Sat Feb  7 05:16:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:16:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_051601.sql
+[Sat Feb  7 05:17:02 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:17:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_051702.sql
+[Sat Feb  7 05:18:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:18:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_051801.sql
+[Sat Feb  7 05:19:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:19:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_051901.sql
+[Sat Feb  7 05:20:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:20:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_052001.sql
+[Sat Feb  7 05:21:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:21:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_052101.sql
+[Sat Feb  7 05:22:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:22:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_052201.sql
+[Sat Feb  7 05:23:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:23:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_052301.sql
+[Sat Feb  7 05:24:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:24:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_052401.sql
+[Sat Feb  7 05:25:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:25:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_052501.sql
+[Sat Feb  7 05:26:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:26:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_052601.sql
+[Sat Feb  7 05:27:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:27:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_052701.sql
+[Sat Feb  7 05:28:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:28:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_052801.sql
+[Sat Feb  7 05:29:02 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:29:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_052902.sql
+[Sat Feb  7 05:30:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:30:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_053001.sql
+[Sat Feb  7 05:31:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:31:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_053101.sql
+[Sat Feb  7 05:32:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:32:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_053201.sql
+[Sat Feb  7 05:33:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:33:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_053301.sql
+[Sat Feb  7 05:34:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:34:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_053401.sql
+[Sat Feb  7 05:35:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:35:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_053501.sql
+[Sat Feb  7 05:36:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:36:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_053601.sql
+[Sat Feb  7 05:37:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:37:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_053701.sql
+[Sat Feb  7 05:38:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:38:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_053801.sql
+[Sat Feb  7 05:39:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:39:02 UTC 2026] Backup exitoso: ecocanje_db_20260207_053901.sql
+[Sat Feb  7 05:40:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:40:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_054001.sql
+[Sat Feb  7 05:41:01 UTC 2026] Iniciando backup de ecocanje_db en postgres:5432 con usuario postgres
+[Sat Feb  7 05:41:01 UTC 2026] Backup exitoso: ecocanje_db_20260207_054101.sql

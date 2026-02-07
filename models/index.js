@@ -3,6 +3,7 @@ const User = require("./User");
 const Product = require("./Product");
 const Order = require("./Order");
 const OrderItem = require("./OrderItem");
+const PurchaseRequest = require("./PurchaseRequest");
 
 // Seller (User) -> Products
 User.hasMany(Product, { foreignKey: "seller_id" });
@@ -20,4 +21,14 @@ OrderItem.belongsTo(Order, { foreignKey: "order_id" });
 Product.hasMany(OrderItem, { foreignKey: "product_id" });
 OrderItem.belongsTo(Product, { foreignKey: "product_id" });
 
-module.exports = { User, Product, Order, OrderItem };
+// ✅ Purchase Requests
+User.hasMany(PurchaseRequest, { foreignKey: "seller_id", as: "sales_requests" });
+User.hasMany(PurchaseRequest, { foreignKey: "buyer_id", as: "buy_requests" });
+
+PurchaseRequest.belongsTo(User, { foreignKey: "seller_id", as: "seller" });
+PurchaseRequest.belongsTo(User, { foreignKey: "buyer_id", as: "buyer" });
+
+Product.hasMany(PurchaseRequest, { foreignKey: "product_id" });
+PurchaseRequest.belongsTo(Product, { foreignKey: "product_id", as: "product" });
+
+module.exports = { User, Product, Order, OrderItem, PurchaseRequest };

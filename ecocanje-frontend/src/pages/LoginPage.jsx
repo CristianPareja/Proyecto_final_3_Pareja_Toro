@@ -7,6 +7,7 @@ export default function LoginPage({ onLogin }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  // ✅ Incluimos los campos de contacto para registro
   const [form, setForm] = useState({
     username: "",
     password: "",
@@ -26,21 +27,39 @@ export default function LoginPage({ onLogin }) {
 
     try {
       if (mode === "register") {
-        await api.post("/api/auth/register", form);
+        if (!form.full_name.trim()) throw new Error("El nombre completo es obligatorio");
+        if (!form.phone.trim()) throw new Error("El teléfono es obligatorio");
+        if (!form.bank_name.trim()) throw new Error("El banco es obligatorio");
+        if (!form.account_type.trim()) throw new Error("El tipo de cuenta es obligatorio");
+        if (!form.account_number.trim()) throw new Error("El número de cuenta es obligatorio");
+
+        //Enviamos TODO al backend
+        await api.post("/api/auth/register", {
+          username: form.username.trim(),
+          password: form.password,
+          full_name: form.full_name.trim(),
+          phone: form.phone.trim(),
+          bank_name: form.bank_name.trim(),
+          account_type: form.account_type.trim(),
+          account_number: form.account_number.trim(),
+        });
       }
 
+      // Login normal
       const res = await api.post("/api/auth/login", {
-        username: form.username,
+        username: form.username.trim(),
         password: form.password,
       });
 
       const token = res.data.token;
-      localStorage.setItem("token", token);
-      localStorage.setItem("username", form.username);
+      const username = form.username.trim();
 
-      onLogin({ token, username: form.username });
+      localStorage.setItem("token", token);
+      localStorage.setItem("username", username);
+
+      onLogin({ token, username });
     } catch (err) {
-      setError(err?.response?.data?.message || "Network Error");
+      setError(err?.response?.data?.message || err?.message || "Error al iniciar sesión");
     } finally {
       setLoading(false);
     }
@@ -104,20 +123,16 @@ export default function LoginPage({ onLogin }) {
             />
           </div>
 
+          {/*Campos extra SOLO en registro */}
           {mode === "register" && (
             <>
-              <div className="pt-2 border-t border-eco-100">
-                <div className="text-sm font-semibold text-eco-900">Datos de contacto</div>
-                <div className="text-xs text-eco-900/60">Estos datos se mostrarán al solicitar compra.</div>
-              </div>
-
               <div>
-                <label className="text-sm font-medium text-eco-900">Nombres</label>
+                <label className="text-sm font-medium text-eco-900">Nombre completo</label>
                 <input
                   value={form.full_name}
                   onChange={(e) => set("full_name", e.target.value)}
                   className="mt-1 w-full rounded-xl border border-eco-200 px-3 py-2 outline-none focus:border-eco-500"
-                  placeholder="Ej: Carlos Pérez"
+                  placeholder="Ej: Juan Pérez"
                   required
                 />
               </div>
@@ -128,7 +143,7 @@ export default function LoginPage({ onLogin }) {
                   value={form.phone}
                   onChange={(e) => set("phone", e.target.value)}
                   className="mt-1 w-full rounded-xl border border-eco-200 px-3 py-2 outline-none focus:border-eco-500"
-                  placeholder="Ej: 5939XXXXXXX"
+                  placeholder="Ej: 0999999999"
                   required
                 />
               </div>
@@ -146,16 +161,13 @@ export default function LoginPage({ onLogin }) {
 
               <div>
                 <label className="text-sm font-medium text-eco-900">Tipo de cuenta</label>
-                <select
+                <input
                   value={form.account_type}
                   onChange={(e) => set("account_type", e.target.value)}
                   className="mt-1 w-full rounded-xl border border-eco-200 px-3 py-2 outline-none focus:border-eco-500"
+                  placeholder="Ej: Ahorros / Corriente"
                   required
-                >
-                  <option value="">Selecciona</option>
-                  <option value="Ahorros">Ahorros</option>
-                  <option value="Corriente">Corriente</option>
-                </select>
+                />
               </div>
 
               <div>
